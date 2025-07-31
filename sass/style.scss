@@ -23,15 +23,40 @@
 	--fs-small: clamp(0.85rem, 3vw, 1.1rem);
 	--fs-small-2: clamp(0.9rem, 3vw, 1.15rem);
 	--fs-medium: clamp(1.05rem, 5vw, 2rem);
+	--fs-big: clamp(1.6rem, 5vw, 2.5rem);
+}
+
+@mixin boardStyles($bg) {
+	color: hsl(0, 0%, 100%);
+	background-color: $bg;
+	border-radius: var(--cardRadius);
+	overflow: hidden;
 }
 body {
 	font-family: "Rubik", sans-serif;
 	background-color: var(--veryDarkNavy);
 }
+.dot {
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background-color: hsla(0, 0%, 100%, 0.538);
+}
 .boards {
 	&__content {
 		padding: 4em 2em;
 		width: min(100%, 1200px);
+		display: grid;
+        gap: 1.5em;
+		grid-template-areas:
+			none
+			"work"
+			"play"
+			"study"
+			"exercise"
+			"social"
+			"self-care";
 	}
 	&__board--main {
 		color: var(--txtColor, hsl(0, 0%, 100%));
@@ -81,5 +106,50 @@ body {
 		&.active {
 			color: hsl(0, 0%, 100%);
 		}
+	}
+
+	&__board {
+		@include boardStyles(var(--workColor));
+	}
+	&__board-bg {
+		position: relative;
+		height: 40px;
+		z-index: 1;
+
+		img {
+			position: absolute;
+			top: -1em;
+			right: 1em;
+		}
+	}
+	&__board-body {
+		position: relative;
+		padding: var(--cardPadding);
+		border-radius: var(--cardRadius) var(--cardRadius) 0 0;
+		background-color: var(--navy);
+		z-index: 100;
+	}
+	&__board-body--top,
+	&__board-body--bottom {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	&__board-body--top {
+		margin-block-end: 1em;
+	}
+	&__board-category,
+	&__board-last-time {
+		font-size: var(--fs-small-2);
+	}
+	&__board-last-time {
+		color: hsla(0, 0%, 100%, 0.538);
+		font-weight: 400;
+		text-wrap: balance;
+		white-space: nowrap;
+	}
+	&__board-time {
+		font-weight: 300;
+		font-size: var(--fs-big);
 	}
 }
