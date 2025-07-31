@@ -20,10 +20,11 @@
 	--veryLightNavy: hsl(236, 100%, 87%);
 	--cardRadius: 20px;
 	--cardPadding: 2em;
-	--fs-small: clamp(0.85rem, 3vw, 1.1rem);
+	--fs-small: clamp(0.85rem, 3vw, 0.9rem);
 	--fs-small-2: clamp(0.9rem, 3vw, 1.15rem);
-	--fs-medium: clamp(1.05rem, 5vw, 2rem);
-	--fs-big: clamp(1.6rem, 5vw, 2.5rem);
+	--fs-small-3: clamp(0.85rem, 2vw, 1rem);
+	--fs-medium: clamp(1.05rem, 6vw, 3rem);
+	--fs-big: clamp(2rem, 6vw, 4rem);
 }
 
 @mixin boardStyles($bg) {
@@ -37,6 +38,9 @@ body {
 	background-color: var(--veryDarkNavy);
 }
 .options {
+	display: flex;
+	align-items: center;
+	gap: 0.2em;
 	background: none;
 	border: none;
 	cursor: pointer;
@@ -52,10 +56,11 @@ body {
 	&__content {
 		padding: 4em 2em;
 		width: min(100%, 1200px);
+		margin: 0 auto;
 		display: grid;
 		gap: 1.5em;
 		grid-template-areas:
-			none
+			"main"
 			"work"
 			"play"
 			"study"
@@ -68,6 +73,8 @@ body {
 		background-color: var(--navy);
 		border-radius: var(--cardRadius);
 		overflow: hidden;
+
+		grid-area: main;
 	}
 	&__board--main-header {
 		display: flex;
@@ -90,8 +97,8 @@ body {
 	}
 	&__board-report {
 		display: block;
-		opacity: 0.5;
 		font-weight: 400;
+		color: hsla(0, 0%, 100%, 0.538);
 		font-size: var(--fs-small);
 		margin-block-end: 0.4em;
 	}
@@ -114,23 +121,30 @@ body {
 	}
 
 	&__board {
+		cursor: pointer;
 		&--work {
 			@include boardStyles(var(--workColor));
+			grid-area: work;
 		}
 		&--play {
 			@include boardStyles(var(--playColor));
+			grid-area: play;
 		}
 		&--study {
 			@include boardStyles(var(--studyColor));
+			grid-area: study;
 		}
 		&--exercise {
 			@include boardStyles(var(--exerciseColor));
+			grid-area: exercise;
 		}
 		&--social {
 			@include boardStyles(var(--socialColor));
+			grid-area: social;
 		}
 		&--self-care {
 			@include boardStyles(var(--selfCareColor));
+			grid-area: self-care;
 		}
 	}
 	&__board-bg {
@@ -160,18 +174,120 @@ body {
 	&__board-body--top {
 		margin-block-end: 1em;
 	}
-	&__board-category,
-	&__board-last-time {
+	&__board-category {
 		font-size: var(--fs-small-2);
 	}
 	&__board-last-time {
+		margin-inline-start: 1em;
 		color: hsla(0, 0%, 100%, 0.538);
 		font-weight: 400;
 		text-wrap: balance;
 		white-space: nowrap;
+		font-size: var(--fs-small-3);
 	}
 	&__board-time {
 		font-weight: 300;
 		font-size: var(--fs-big);
+	}
+}
+
+@media (36rem <= width) {
+	.boards {
+		&__board--main-body {
+			justify-content: center;
+			gap: 3em;
+		}
+	}
+}
+@media (48rem <= width) {
+	.options:hover .dot {
+		background-color: hsl(0, 0%, 100%);
+	}
+	.dot {
+		transition: background-color 0.3s, transform 0.3s .2s;
+	}
+	.boards {
+		&__content {
+			grid-template-areas:
+				"main work play"
+				"main study exercise"
+				"main social self-care";
+		}
+		&__board--main-header {
+			height: 50%;
+			flex-direction: column;
+			align-items: flex-start;
+			border-radius: var(--cardRadius);
+		}
+		&__board--main-body {
+			padding: 3em var(--cardPadding) 0;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 1.2em;
+		}
+		&__board-avatar {
+			width: 75px;
+			margin-block-end: 2em;
+		}
+		&__board-body {
+			transition: background-color 0.3s;
+		}
+		&__board-body--bottom {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+		&__board-last-time {
+			margin: 0.5em 0;
+		}
+		&__board {
+			cursor: pointer;
+
+            &:hover .options .dot:first-child {
+                transform: translateX(-2px);
+            }
+            &:hover .options .dot:last-child {
+                transform: translateX(2px);
+            }
+		}
+		&__board:hover .boards__board-body {
+			background-color: hsl(236, 41%, 34%);
+		}
+		&__board-btn {
+			transition: color 0.3s;
+
+			&:hover {
+				color: hsl(0, 0%, 100%);
+			}
+		}
+		&__board-name {
+			font-size: 2.35rem;
+		}
+	}
+}
+
+@media (56rem <= width) {
+	.boards {
+		&__content {
+			grid-template-areas:
+				"main work play study"
+				"main exercise social self-care";
+
+			grid-auto-columns: 1fr;
+		}
+		&__board--exercise .boards__board-bg {
+			top: 1em;
+		}
+		&__board--main-header {
+			height: 65%;
+		}
+		&__board-avatar {
+			width: 90px;
+		}
+		&__board-bg {
+			height: 45px;
+		}
+		&__board--main-body {
+			padding: var(--cardPadding);
+		}
 	}
 }

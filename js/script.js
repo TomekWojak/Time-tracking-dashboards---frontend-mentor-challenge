@@ -17,6 +17,13 @@ fetch(SRC)
 		);
 		document.querySelector(".boards__board-btn-weekly").classList.add("active");
 		updateBoards(data);
+	})
+	.catch((err) => {
+		console.log(err);
+		const container = document.querySelector(".boards__content");
+		container.innerHTML = "Failed to load content";
+        container.style.textAlign = 'center'
+        container.style.color = '#fff'
 	});
 
 const updateBoards = (data) => {
