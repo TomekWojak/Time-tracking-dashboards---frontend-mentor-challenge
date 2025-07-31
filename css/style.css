@@ -31,6 +31,12 @@ body {
   background-color: var(--veryDarkNavy);
 }
 
+.options {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
 .dot {
   display: inline-block;
   width: 5px;
@@ -94,15 +100,45 @@ body {
 .boards__board-btn.active {
   color: hsl(0, 0%, 100%);
 }
-.boards__board {
+.boards__board--work {
   color: hsl(0, 0%, 100%);
   background-color: var(--workColor);
   border-radius: var(--cardRadius);
   overflow: hidden;
 }
+.boards__board--play {
+  color: hsl(0, 0%, 100%);
+  background-color: var(--playColor);
+  border-radius: var(--cardRadius);
+  overflow: hidden;
+}
+.boards__board--study {
+  color: hsl(0, 0%, 100%);
+  background-color: var(--studyColor);
+  border-radius: var(--cardRadius);
+  overflow: hidden;
+}
+.boards__board--exercise {
+  color: hsl(0, 0%, 100%);
+  background-color: var(--exerciseColor);
+  border-radius: var(--cardRadius);
+  overflow: hidden;
+}
+.boards__board--social {
+  color: hsl(0, 0%, 100%);
+  background-color: var(--socialColor);
+  border-radius: var(--cardRadius);
+  overflow: hidden;
+}
+.boards__board--self-care {
+  color: hsl(0, 0%, 100%);
+  background-color: var(--selfCareColor);
+  border-radius: var(--cardRadius);
+  overflow: hidden;
+}
 .boards__board-bg {
   position: relative;
-  height: 40px;
+  height: 35px;
   z-index: 1;
 }
 .boards__board-bg img {

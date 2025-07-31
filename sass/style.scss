@@ -36,6 +36,11 @@ body {
 	font-family: "Rubik", sans-serif;
 	background-color: var(--veryDarkNavy);
 }
+.options {
+	background: none;
+	border: none;
+	cursor: pointer;
+}
 .dot {
 	display: inline-block;
 	width: 5px;
@@ -48,7 +53,7 @@ body {
 		padding: 4em 2em;
 		width: min(100%, 1200px);
 		display: grid;
-        gap: 1.5em;
+		gap: 1.5em;
 		grid-template-areas:
 			none
 			"work"
@@ -109,11 +114,28 @@ body {
 	}
 
 	&__board {
-		@include boardStyles(var(--workColor));
+		&--work {
+			@include boardStyles(var(--workColor));
+		}
+		&--play {
+			@include boardStyles(var(--playColor));
+		}
+		&--study {
+			@include boardStyles(var(--studyColor));
+		}
+		&--exercise {
+			@include boardStyles(var(--exerciseColor));
+		}
+		&--social {
+			@include boardStyles(var(--socialColor));
+		}
+		&--self-care {
+			@include boardStyles(var(--selfCareColor));
+		}
 	}
 	&__board-bg {
 		position: relative;
-		height: 40px;
+		height: 35px;
 		z-index: 1;
 
 		img {
