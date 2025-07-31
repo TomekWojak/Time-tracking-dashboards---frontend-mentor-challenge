@@ -38,6 +38,7 @@ body {
 	background-color: var(--veryDarkNavy);
 }
 .options {
+	padding: 0.5em;
 	display: flex;
 	align-items: center;
 	gap: 0.2em;
@@ -122,6 +123,11 @@ body {
 
 	&__board {
 		cursor: pointer;
+
+		&.animated {
+			animation: animate 0.5s forwards;
+		}
+
 		&--work {
 			@include boardStyles(var(--workColor));
 			grid-area: work;
@@ -204,7 +210,7 @@ body {
 		background-color: hsl(0, 0%, 100%);
 	}
 	.dot {
-		transition: background-color 0.3s, transform 0.3s .2s;
+		transition: background-color 0.3s, transform 0.3s 0.2s;
 	}
 	.boards {
 		&__content {
@@ -212,6 +218,7 @@ body {
 				"main work play"
 				"main study exercise"
 				"main social self-care";
+			grid-auto-columns: 1fr;
 		}
 		&__board--main-header {
 			height: 50%;
@@ -242,12 +249,12 @@ body {
 		&__board {
 			cursor: pointer;
 
-            &:hover .options .dot:first-child {
-                transform: translateX(-2px);
-            }
-            &:hover .options .dot:last-child {
-                transform: translateX(2px);
-            }
+			&:hover .options .dot:first-child {
+				transform: translateX(-2px);
+			}
+			&:hover .options .dot:last-child {
+				transform: translateX(2px);
+			}
 		}
 		&__board:hover .boards__board-body {
 			background-color: hsl(236, 41%, 34%);
@@ -271,8 +278,6 @@ body {
 			grid-template-areas:
 				"main work play study"
 				"main exercise social self-care";
-
-			grid-auto-columns: 1fr;
 		}
 		&__board--exercise .boards__board-bg {
 			top: 1em;
@@ -289,5 +294,16 @@ body {
 		&__board--main-body {
 			padding: var(--cardPadding);
 		}
+	}
+}
+
+@keyframes animate {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
 	}
 }

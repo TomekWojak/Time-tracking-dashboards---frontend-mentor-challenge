@@ -33,6 +33,7 @@ body {
 }
 
 .options {
+  padding: 0.5em;
   display: flex;
   align-items: center;
   gap: 0.2em;
@@ -108,6 +109,9 @@ body {
 }
 .boards__board {
   cursor: pointer;
+}
+.boards__board.animated {
+  animation: animate 0.5s forwards;
 }
 .boards__board--work {
   color: hsl(0, 0%, 100%);
@@ -207,6 +211,7 @@ body {
   }
   .boards__content {
     grid-template-areas: "main work play" "main study exercise" "main social self-care";
+    grid-auto-columns: 1fr;
   }
   .boards__board--main-header {
     height: 50%;
@@ -259,7 +264,6 @@ body {
 @media (56rem <= width) {
   .boards__content {
     grid-template-areas: "main work play study" "main exercise social self-care";
-    grid-auto-columns: 1fr;
   }
   .boards__board--exercise .boards__board-bg {
     top: 1em;
@@ -275,5 +279,15 @@ body {
   }
   .boards__board--main-body {
     padding: var(--cardPadding);
+  }
+}
+@keyframes animate {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }/*# sourceMappingURL=style.css.map */
