@@ -83,6 +83,7 @@ body {
 		gap: 1em;
 		background-color: var(--purple);
 		padding: var(--cardPadding);
+		border-radius: var(--cardRadius);
 	}
 	&__board--main-body {
 		display: flex;
