@@ -71,6 +71,7 @@ body {
   gap: 1em;
   background-color: var(--purple);
   padding: var(--cardPadding);
+  border-radius: var(--cardRadius);
 }
 .boards__board--main-body {
   display: flex;
